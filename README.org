@@ -1,0 +1,24 @@
+* About
+This is a wrapper script for running bash scripts that were written for Linux on OSX/BSD. This script can be used on either Linux or OSX/BSD. On Linux, it will do nothing and just call the specified program/script. On OSX/BSD it will first define functions to ensure that the GNU versions of commands are used.
+
+Here is an example invocation to run [[https://github.com/noctuid/tdrop][tdrop]]:
+#+begin_src sh
+with-gnu-utils tdrop -ma -s dropdown kitty
+#+end_src
+
+* Requirements
+** OSX
+Install the latest =bash=, =coreutils=, =gnu-sed=, =gawk=, =grep=, and =gnu-getopt= with brew.
+
+** FreeBSD
+Install =bash=, =coreutils=, =gsed=, =gawk=, =gnugrep=, and =getopt=.
+
+** OpenBSD
+Install =coreutils=, =gsed=, =gawk=, and =ggrep=.
+
+* Caveats
+GNU getopt is not installeable on FreeBSD and OpenBSD as far as I can tell. On FreeBSD, there is a version of =getopt= that is more compatible with GNU getopt.
+
+procps pgrep is also not available on BSD, so scripts that use flags that are only available in procps pgrep will not work either.
+
+If other unavailable commands used, the script may not work (e.g. this script won't magically make =xdotool= work if you are not running X). This script only handles differences in core utilities.

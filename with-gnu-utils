@@ -1,0 +1,474 @@
+#!/usr/bin/env bash
+
+# * BSD/OSX Compatibility
+if [[ $OSTYPE =~ ^(darwin|FreeBSD|openbsd) ]]; then
+	# ** GNU Awk, Grep, and Sed
+	awk() {
+		gawk "$@"
+	}
+	export -f awk
+
+	if [[ $OSTYPE == FreeBSD* ]]; then
+		grep() {
+			/usr/local/bin/grep "$@"
+		}
+	else
+		grep() {
+			ggrep "$@"
+		}
+	fi
+	export -f grep
+
+	sed() {
+		gsed "$@"
+	}
+	export -f sed
+
+	# ** GNU Getopt
+	case $OSTYPE in
+		darwin*)
+			getopt() {
+				/usr/local/opt/gnu-getopt/bin/getopt "$@"
+			}
+			export -f getopt
+			;;
+		FreeBSD*)
+			getopt() {
+				/usr/local/bin/getopt "$@"
+			}
+			export -f getopt
+			;;
+		*) true;;
+	esac
+
+	# ** GNU Coreutils
+	basename() {
+		gbasname "$@"
+	}
+	export -f basename
+
+	cat() {
+		gcat "$@"
+	}
+	export -f cat
+
+	chgrp() {
+		gchgrp "$@"
+	}
+	export -f chgrp
+
+	chmod() {
+		gchmod "$@"
+	}
+	export -f chmod
+
+	chown() {
+		gchown "$@"
+	}
+	export -f chown
+
+	chroot() {
+		gchroot "$@"
+	}
+	export -f chroot
+
+	cksum() {
+		gcksum "$@"
+	}
+	export -f cksum
+
+	comm() {
+		gcomm "$@"
+	}
+	export -f comm
+
+	cp() {
+		gcp "$@"
+	}
+	export -f cp
+
+	csplit() {
+		gcsplit "$@"
+	}
+	export -f csplit
+
+	cut() {
+		gcut "$@"
+	}
+	export -f cut
+
+	date() {
+		gdate "$@"
+	}
+	export -f date
+
+	dd() {
+		gdd "$@"
+	}
+	export -f dd
+
+	df() {
+		gdf "$@"
+	}
+	export -f df
+
+	dir() {
+		gdir "$@"
+	}
+	export -f dir
+
+	dircolors() {
+		gdircolors "$@"
+	}
+	export -f dircolors
+
+	dirname() {
+		gdirname "$@"
+	}
+	export -f dirname
+
+	du() {
+		gdu "$@"
+	}
+	export -f du
+
+	# echo is a bash builtin
+
+	env() {
+		genv "$@"
+	}
+	export -f env
+
+	expand() {
+		gexpand "$@"
+	}
+	export -f expand
+
+	expr() {
+		gexpr "$@"
+	}
+	export -f expr
+
+	factor() {
+		gfactor "$@"
+	}
+	export -f factor
+
+	# false is a bash builtin
+
+	fmt() {
+		gfmt "$@"
+	}
+	export -f fmt
+
+	fold() {
+		gfold "$@"
+	}
+	export -f fold
+
+	groups() {
+		ggroups "$@"
+	}
+	export -f groups
+
+	head() {
+		ghead "$@"
+	}
+	export -f head
+
+	hostid() {
+		ghostid "$@"
+	}
+	export -f hostid
+
+	hostname() {
+		ghostname "$@"
+	}
+	export -f hostname
+
+	id() {
+		gid "$@"
+	}
+	export -f id
+
+	install() {
+		ginstall "$@"
+	}
+	export -f install
+
+	join() {
+		gjoin "$@"
+	}
+	export -f join
+
+	kill() {
+		gkill "$@"
+	}
+	export -f kill
+
+	link() {
+		glink "$@"
+	}
+	export -f link
+
+	ln() {
+		gln "$@"
+	}
+	export -f ln
+
+	logname() {
+		glogname "$@"
+	}
+	export -f logname
+
+	ls() {
+		gls "$@"
+	}
+	export -f ls
+
+	md5sum() {
+		gmd5sum "$@"
+	}
+	export -f md5sum
+
+	mkdir() {
+		gmkdir "$@"
+	}
+	export -f mkdir
+
+	mkfifo() {
+		gmkfifo "$@"
+	}
+	export -f mkfifo
+
+	mknod() {
+		gmknod "$@"
+	}
+	export -f mknod
+
+	mv() {
+		gmv "$@"
+	}
+	export -f mv
+
+	nice() {
+		gnice "$@"
+	}
+	export -f nice
+
+	nl() {
+		gnl "$@"
+	}
+	export -f nl
+
+	nohup() {
+		gnohup "$@"
+	}
+	export -f nohup
+
+	od() {
+		god "$@"
+	}
+	export -f od
+
+	paste() {
+		gpaste "$@"
+	}
+	export -f paste
+
+	pathchk() {
+		gpathchk "$@"
+	}
+	export -f pathchk
+
+	pinky() {
+		gpinky "$@"
+	}
+	export -f pinky
+
+	pr() {
+		gpr "$@"
+	}
+	export -f pr
+
+	printenv() {
+		gprintenv "$@"
+	}
+	export -f printenv
+
+	# printf is a bash builtin
+
+	ptx() {
+		gptx "$@"
+	}
+	export -f ptx
+
+	# pwd is a bash puiltin
+
+	readlink() {
+		greadlink "$@"
+	}
+	export -f readlink
+
+	rm() {
+		grm "$@"
+	}
+	export -f rm
+
+	rmdir() {
+		grmdir "$@"
+	}
+	export -f rmdir
+
+	seq() {
+		gseq "$@"
+	}
+	export -f seq
+
+	sha1sum() {
+		gsha1sum "$@"
+	}
+	export -f sha1sum
+
+	shred() {
+		gshred "$@"
+	}
+	export -f shred
+
+	sleep() {
+		gsleep "$@"
+	}
+	export -f sleep
+
+	sort() {
+		gsort "$@"
+	}
+	export -f sort
+
+	split() {
+		gsplit "$@"
+	}
+	export -f split
+
+	stat() {
+		gstat "$@"
+	}
+	export -f stat
+
+	stty() {
+		gstty "$@"
+	}
+	export -f stty
+
+	su() {
+		gsu "$@"
+	}
+	export -f su
+
+	sum() {
+		gsum "$@"
+	}
+	export -f sum
+
+	sync() {
+		gsync "$@"
+	}
+	export -f sync
+
+	tac() {
+		gtac "$@"
+	}
+	export -f tac
+
+	tail() {
+		gtail "$@"
+	}
+	export -f tail
+
+	tee() {
+		gtee "$@"
+	}
+	export -f tee
+
+	# test is a bash builtin
+
+	touch() {
+		gtouch "$@"
+	}
+	export -f touch
+
+	tr() {
+		gtr "$@"
+	}
+	export -f tr
+
+	# true is a bash builtin
+
+	tsort() {
+		gtsort "$@"
+	}
+	export -f tsort
+
+	tty() {
+		gtty "$@"
+	}
+	export -f tty
+
+	uname() {
+		guname "$@"
+	}
+	export -f uname
+
+	unexpand() {
+		gunexpand "$@"
+	}
+	export -f unexpand
+
+	uniq() {
+		guniq "$@"
+	}
+	export -f uniq
+
+	unlink() {
+		gunlink "$@"
+	}
+	export -f unlink
+
+	uptime() {
+		guptime "$@"
+	}
+	export -f uptime
+
+	users() {
+		gusers "$@"
+	}
+	export -f users
+
+	vdir() {
+		gvdir "$@"
+	}
+	export -f vdir
+
+	wc() {
+		gwc "$@"
+	}
+	export -f wc
+
+	who() {
+		gwho "$@"
+	}
+	export -f who
+
+	whoami() {
+		gwhoami "$@"
+	}
+	export -f whoami
+
+	yes() {
+		gyes "$@"
+	}
+	export -f yes
+fi
+
+# * Run Program
+"$@"
