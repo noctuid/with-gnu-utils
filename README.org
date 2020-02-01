@@ -1,3 +1,5 @@
+[[https://github.com/noctuid/with-gnu-utils/actions?query=workflow%3Alint][https://github.com/noctuid/with-gnu-utils/workflows/lint/badge.svg]]
+
 * About
 This is a wrapper script for running bash scripts that were written for Linux on OSX/BSD. This script can be used on either Linux or OSX/BSD. On Linux, it will do nothing and just call the specified program/script. On OSX/BSD it will first define functions to ensure that the GNU versions of commands are used.
 
