@@ -10,13 +10,35 @@ with-gnu-utils tdrop -ma -s dropdown kitty
 
 * Requirements
 ** OSX
-Install the latest =bash=, =coreutils=, =gnu-sed=, =gawk=, =grep=, and =gnu-getopt= with brew.
+Install these with brew:
+- =bash=
+- =coreutils=
+- =gawk=
+- =findutils=
+- =grep=
+- =gnu-sed=
+- =gnu-tar=
+- =gnu-getopt=
 
 ** FreeBSD
-Install =bash=, =coreutils=, =gsed=, =gawk=, =gnugrep=, and =getopt=.
+Install these:
+- =bash=
+- =coreutils=
+- =gawk=
+- =findutils=
+- =gnugrep=
+- =gsed=
+- =gtar=
+- =getopt=
 
 ** OpenBSD
-Install =coreutils=, =gsed=, =gawk=, and =ggrep=.
+Install these:
+- =coreutils=
+- =gawk=
+- =findutils=
+- =ggrep=
+- =gsed=
+- =gtar=
 
 * Caveats
 GNU getopt is not installeable on FreeBSD and OpenBSD as far as I can tell. On FreeBSD, there is a version of =getopt= that is more compatible with GNU getopt.
@@ -24,3 +46,17 @@ GNU getopt is not installeable on FreeBSD and OpenBSD as far as I can tell. On F
 procps pgrep is also not available on BSD, so scripts that use flags that are only available in procps pgrep will not work either.
 
 If other unavailable commands used, the script may not work (e.g. this script won't magically make =xdotool= work if you are not running X). This script only handles differences in core utilities.
+
+* Use with =makem.sh=
+~with-gnu-utils~ can be used to run [[https://github.com/alphapapa/makem.sh][makem.sh]] on FreeBSD or OSX (but not OpenBSD). Either copy the ~with-gnu-utils~ script into your repository or add this repository as a submodule. Install the necessary dependencies listed above and then run ~makem.sh~ through ~with-gnu-utils~:
+#+begin_src sh
+# if copied script into repository
+./with-gnu-utils \
+	./makem.sh -vv -S ./sandbox --install-deps --install-linters
+# if using submodules
+./with-gnu-utils/with-gnu-utils \
+	./makem/makem.sh -vv -S ./sandbox --install-deps --install-linters
+#+end_src
+
+This allows doing CI testing on an OSX machine, for example. See general.el's [[https://github.com/noctuid/general.el/blob/master/Makefile][Makefile]] and [[https://github.com/noctuid/general.el/blob/master/.github/workflows/test.yml][test.yml]].
+

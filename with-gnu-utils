@@ -2,11 +2,16 @@
 
 # * BSD/OSX Compatibility
 if [[ $OSTYPE =~ ^(darwin|FreeBSD|openbsd) ]]; then
-	# ** GNU Awk, Grep, and Sed
+	# ** GNU Awk, Find, Grep, Sed, and Tar
 	awk() {
 		gawk "$@"
 	}
 	export -f awk
+
+	find() {
+		gfind "$@"
+	}
+	export -f find
 
 	if [[ $OSTYPE == FreeBSD* ]]; then
 		grep() {
@@ -23,6 +28,11 @@ if [[ $OSTYPE =~ ^(darwin|FreeBSD|openbsd) ]]; then
 		gsed "$@"
 	}
 	export -f sed
+
+	tar() {
+		gtar "$@"
+	}
+	export -f tar
 
 	# ** GNU Getopt
 	case $OSTYPE in
