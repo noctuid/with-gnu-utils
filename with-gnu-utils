@@ -256,6 +256,11 @@ if [[ $OSTYPE =~ ^(darwin|FreeBSD|openbsd) ]]; then
 	}
 	export -f mknod
 
+	mktemp() {
+		gmktemp "$@"
+	}
+	export -f mktemp
+
 	mv() {
 		gmv "$@"
 	}
