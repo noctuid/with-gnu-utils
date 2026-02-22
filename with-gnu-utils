@@ -38,7 +38,7 @@ if [[ $OSTYPE =~ ^(darwin|FreeBSD|openbsd) ]]; then
 	case $OSTYPE in
 		darwin*)
 			getopt() {
-				/usr/local/opt/gnu-getopt/bin/getopt "$@"
+				/opt/homebrew/opt/gnu-getopt/bin/getopt "$@"
 			}
 			export -f getopt
 			;;
